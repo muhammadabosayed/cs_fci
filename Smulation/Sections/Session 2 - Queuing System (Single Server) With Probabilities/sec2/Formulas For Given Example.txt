@@ -1,0 +1,36 @@
+Average Duration:
+			=SUMIF(Issue Rane;Issue;Duration Range)/COUNTIF(Issue Range;Issue)
+Probability:
+			=COUNTIF(Issue Range,Issue)/COUNT(Cust # Column)
+Cumulative Probability (First Row):
+			=First Probability
+Cumulative Probability (From Second To Last Row):
+			=Current Probability + Previous Cumulative Probability
+Random Digit Assignment (From & To):
+			=From is 1 in First Row
+			=From is (To + 1) in Second Row to Last Row
+			=To is (Cumulative Probability * 100) in Each Row
+Interarrival Random:
+			=RANDOMBETWEEN(MIN(Interarrival Time Range),MAX(Interarrival Time Range))
+Arrival Time For First Customer:
+			=The First Interarrival Time For First Customer
+Arrival Time For Second Customer to Last Customer:
+			=Interarrival Time For Current Customer + Previous Arrival Time
+Issue Code Random:
+			=RANDOMBETWEEN(top;bottom)   [From Auxiliary Table]
+Issue:
+			=LOOKUP(Issue Code Random;Random Digit Assignment Range;Issue Range)
+Time Service Begins For First Customer:
+			=Arrival Time For This Customer
+Time Service Begins For Second Customer To Last Customer:
+			=MAX(Arrival Time;Previous Time Service Ends)
+Serivce Time (Duration):
+			=LOOKUP(Issue Code Random;Random Digit Assignment Range;Avg Duration Range) From Service Time Table
+Time Service Ends:
+			=Time Service Begins + Service Time
+Customer State:
+			=IF(Arrival Time = Time Service Begin,"In Service",Time Service Begin - Arrival Time)
+System State For First Customer:
+			=IF(Arrivat Time = 0,"Busy","Idle")
+System State For Second Customer To Last Customer:
+			=IF(Time Service Begin > Previous Time Service End,"Idle","Busy")

@@ -1,0 +1,35 @@
+Cumulative Probability (First Row):
+			=First Probability
+Cumulative Probability (From Second To Last Row):
+			=Current Probability + Previous Cumulative Probability
+Random Digit Assignment (From & To):
+			=From is 1 in First Row
+			=From is (To + 1) in Second Row to Last Row
+			=To is (Cumulative Probability * 100) in Each Row
+*** Type of Cell (which contains Time) must be Time ***
+Interarrival Random:
+			=RANDOMBETWEEN(Top;Bottom) like RANDBETWEEN(1;100) 
+Interarrival Time [By Minutes]:
+			=LOOKUP(Interarrival Random;Random Digit Assignment Range;Time Between Arrivals Range) From Time Between Arrivals Table
+Arrival Time For First Customer (Type Of Cell must be Time):
+			=Opening Time + TIME(0;First Interarrival Time;0)
+Arrival Time For Second Customer to Last Customer (Type Of Cell must be Time):
+			=Previous Arrival Time + TIME(0;Current Interarrival Time;0)
+Service Time Random:
+			=RANDOMBETWEEN(Top;Bottom)
+Time Service Begins For First Customer (Type Of Cell must be Time):
+			=Arrival Time For This Customer
+Time Service Begins For Second Customer To Last Customer (Type Of Cell must be Time):
+			=MAX(Current Arrival Time;Previous Time Service Ends)
+Serivce Time (Duration) [By Minutes]:
+			=LOOKUP(Service Time Random;Random Digit Assignment Range;Time Between Arrivals Range) From Service Time Table
+Time Service Ends (Type Of Cell must be Time):
+			=Time Service Begins + TIME(0;Service Time;0)
+Customer Wait For First Customer:
+			0
+Customer Wait For Second Customer To Last Customer:
+			=MINUTE(Time Service Begins - Arrival Time)
+Sytem Idle For First Customer:
+			=MINUTE(Current Arrival Time - Opening Time)
+Sytem Idle For Second Customer To Last Customer:
+			=MINUTE(Current Time Service Begins - Previos Time Server Ends)
