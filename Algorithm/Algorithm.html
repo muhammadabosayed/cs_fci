@@ -282,11 +282,13 @@
       let u = document.querySelector(".munu-items");
 
       m.addEventListener("click", function () {
-        if (u.style.display == "none") {
-          u.style.display = "inline-block";
-        } else {
-          u.style.display = "none";
+        if(u.style.right =="-100vw")
+        {
+          u.style.right="0";
+        }else{
+          u.style.right="-100vw";
         }
+    
       });
     </script>
   </body>
