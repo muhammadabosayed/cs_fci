@@ -290,20 +290,20 @@
       <div class="footer" dir="rtl">
         <p>هذا الموقع صمم بواسطة محمد سيد <span style="color: red">♥</span></p>
       </div>
-      <script>
-        let m = document.querySelector(".menu");
-        let u = document.querySelector(".munu-items");
-  
-        m.addEventListener("click", function () {
-          if(u.style.display=="none")
-          {
-            u.style.display="inline-block";
-          }else{
-            u.style.display="none";
-          }
-      
-        });
-      </script>
+    <script>
+      let m = document.querySelector(".menu");
+      let u = document.querySelector(".munu-items");
+
+      m.addEventListener("click", function () {
+        if(u.style.right =="-100vw")
+        {
+          u.style.right="0";
+        }else{
+          u.style.right="-100vw";
+        }
+    
+      });
+    </script>
     </body>
   </html>
   
