@@ -71,7 +71,7 @@ header ul li:hover a{
  
 }
 .menu{
-
+ display: none;
   cursor: pointer;
   width: 45px;
   height: 45px;
