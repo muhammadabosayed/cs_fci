@@ -219,11 +219,11 @@
       let u = document.querySelector(".munu-items");
 
       m.addEventListener("click", function () {
-        if(u.style.display=="none")
+        if(u.style.right =="-100vw")
         {
-          u.style.display="inline-block";
+          u.style.right="0";
         }else{
-          u.style.display="none";
+          u.style.right="-100vw";
         }
     
       });
